@@ -8,10 +8,10 @@
 		<version>3.2.1-SNAPSHOT</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.exemplo</groupId>
-	<artifactId>demo</artifactId>
+	<groupId>com.fatecrl</groupId>
+	<artifactId>todo</artifactId>
 	<version>3.2.1-SNAPSHOT</version>
-	<name>demo</name>
+	<name>todo</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
@@ -40,49 +40,47 @@
 	    <version>2.2.0</version>
 		</dependency>
 
-		<!-- Spring Data JPA -->
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-data-jpa</artifactId>
-</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
 
-<dependency>
-    <groupId>javax.persistence</groupId>
-    <artifactId>javax.persistence-api</artifactId>
-    <version>2.2</version>
-</dependency>
+	    <dependency>
+	      <groupId>com.mysql</groupId>
+	      <artifactId>mysql-connector-j</artifactId>
+	      <scope>runtime</scope>
+	    </dependency>
 
-<!-- MySQL Connector/J -->
-<dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-	<version>8.0.33</version>
-    <scope>runtime</scope>
-</dependency>
+		<dependency>
+    		<groupId>javax.persistence</groupId>
+    		<artifactId>javax.persistence-api</artifactId>
+    		<version>2.2</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.springdoc</groupId>
+		    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+		    <version>2.2.0</version>
+		</dependency>
 
 
-<dependency>
-    <groupId>javax.annotation</groupId>
-    <artifactId>javax.annotation-api</artifactId>
-    <version>1.3.2</version>
-</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>annotationProcessor</scope>
+		</dependency>
 
-<dependency>
-    <groupId>org.springdoc</groupId>
-    <artifactId>springdoc-openapi-ui</artifactId>
-    <version>1.6.3</version> <!-- Verifique a versão mais recente -->
-</dependency>
-<dependency>
-    <groupId>org.springdoc</groupId>
-    <artifactId>springdoc-openapi-data-rest</artifactId>
-    <version>1.6.3</version> <!-- Verifique a versão mais recente -->
-</dependency>
+		<dependency>
+        	<groupId>io.springfox</groupId>
+        	<artifactId>springfox-swagger2</artifactId>
+        	<version>2.9.2</version>
+    	</dependency>
 
-<dependency>
-    <groupId>io.springfox</groupId>
-    <artifactId>springfox-boot-starter</artifactId>
-    <version>3.0.0</version> <!-- Verifique a versão mais recente -->
-</dependency>
+    	<dependency>
+        	<groupId>io.springfox</groupId>
+        	<artifactId>springfox-swagger-ui</artifactId>
+        	<version>2.9.2</version>
+    	</dependency>
 
 	</dependencies>
 
@@ -91,59 +89,8 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-
-<!--						<groupId>org.apache.maven.plugins</groupId>-->
-<!--						<artifactId>maven-compiler-plugin</artifactId>-->
-<!--						<version>3.11.0</version>-->
-
-<!--					  <source>17</source>-->
-<!--                <target>17</target>-->
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-	<repositories>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-		</repository>
-	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-		<pluginRepository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-		</pluginRepository>
-	</pluginRepositories>
-
+	
 </project>

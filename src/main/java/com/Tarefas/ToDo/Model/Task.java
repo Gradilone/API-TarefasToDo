@@ -1,33 +1,29 @@
 package com.Tarefas.ToDo.Model;
 
 import java.time.LocalDate;
-
-
-
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
-import com.Tarefas.ToDo.Priority;
-import com.Tarefas.ToDo.Status;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
 public class Task {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	private Long id;
+	@Column(name="nm_titulo") 
     private String title;
+	@Column(name="ds_descricao") 
     private String description;
-
+	@Column(name="dt_tarefa") 
+    private LocalDate dueDate;   
     @Enumerated(EnumType.STRING)
     private Status status;
-
-    private LocalDate dueDate;
-
     @Enumerated(EnumType.STRING)
     private Priority priority;
 
