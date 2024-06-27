@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 
-
 @Entity
 @Table(name = "tb_tasks")
 @Getter
