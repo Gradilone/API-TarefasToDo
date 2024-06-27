@@ -1,64 +1,55 @@
 package com.Tarefas.ToDo.Service;
 import com.Tarefas.ToDo.Model.Task;
 // import com.Tarefas.ToDo.Repository.TaskRepository;
+import com.Tarefas.ToDo.Repository.TaskRepository;
 
-import jakarta.annotation.PostConstruct;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.Tarefas.ToDo.Model.Status;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicLong;
+
 
 @Service
 public class TaskService {
 
-   private List<Task> tasks;
-    private AtomicLong idCounter;
-
-    @PostConstruct
-    public void init() {
-        tasks = new ArrayList<>();
-        idCounter = new AtomicLong();
-    }
+    @Autowired
+    private TaskRepository taskRepository;
 
     public List<Task> getAllTasks() {
-        return new ArrayList<>(tasks);
+        return taskRepository.findAll();
     }
 
     public Optional<Task> getTaskById(Long id) {
-        return tasks.stream().filter(task -> task.getId().equals(id)).findFirst();
+        return taskRepository.findById(id);
     }
 
     public Task createTask(Task task) {
-        task.setId(idCounter.incrementAndGet());
-        tasks.add(task);
-        return task;
+        return taskRepository.save(task);
     }
 
     public void deleteTask(Long id) {
-        tasks.removeIf(task -> task.getId().equals(id));
+        taskRepository.deleteById(id);
     }
 
     public Task updateTask(Long id, Task updatedTask) {
-        return getTaskById(id).map(existingTask -> {
+        return taskRepository.findById(id).map(existingTask -> {
             existingTask.setTitle(updatedTask.getTitle());
             existingTask.setDescription(updatedTask.getDescription());
             existingTask.setStatus(updatedTask.getStatus());
             existingTask.setDueDate(updatedTask.getDueDate());
             existingTask.setPriority(updatedTask.getPriority());
-            return existingTask;
+            return taskRepository.save(existingTask);
         }).orElseThrow(() -> new RuntimeException("Task not found"));
     }
 
     public Task patchTask(Long id, Status status) {
-        return getTaskById(id).map(existingTask -> {
+        return taskRepository.findById(id).map(existingTask -> {
             if (status != null) {
                 existingTask.setStatus(status);
             }
-            return existingTask;
+            return taskRepository.save(existingTask);
         }).orElseThrow(() -> new RuntimeException("Task not found"));
     }
 }
